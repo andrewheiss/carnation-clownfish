@@ -1,0 +1,88 @@
+---
+title: "Taking Uncertainty Seriously: Bayesian Marginal Structural Models for Causal Inference in Political Science"
+short-title: "Taking Uncertainty Seriouslly"
+author:
+- name: Andrew Heiss
+  affiliation: Georgia State University
+  email: aheiss@gsu.edu
+  url: https://www.andrewheiss.com/
+- name: A. Jordan Nafa
+  affiliation: University of North Texas
+  email: 
+date: "December 26, 2021"
+published: Drafting
+code-repo: "Access the code at <https://github.com/andrewheiss/carnation-clownfish>"
+abstract: >-
+  While the past two decades have been characterized by considerable progress in developing approaches to causal inference in situations where true experimental manipulation is either impractical or impossible, as is the case in much of political science, commonly employed approaches have developed largely within the frameworks of classical econometrics and frequentist non-parametric [@BlackwellGlynn:2018]. Unfortunately, these frameworks are limited in their ability to answer many of the questions scholars of international relations and comparative politics are often interested in since they rely heavily upon the assumption of long-run replication rather than quantifying uncertainty directly [@Gill:1999; @GillHeuberger:2020; @Schrodt:2014; @WesternJackman:1994]. In this article we develop a Bayesian approach to the estimation of marginal structural models for causal inference with cross-sectional time series and panel data. We assess the proposed models' performance relative to existing procedures in a simulation study and two empirical examples, demonstrating that our approach performs well in terms of recovering the true parameter values while also lending itself to a more direct and intuitive interpretation. To ensure accessibility, we provide a flexible implementation of the proposed model in the R package `brms` [@Burkner:2017; @Burkner:2018].
+keywords: comma, separated, keywords, here
+word-count: ""
+thanks: >-
+  Acknowledgments here if any
+reference-section-title: References
+bibliography: bibliography.bib
+link-citations: true
+toc: false
+title-page: true
+endnotes: false
+endfloat: false
+author-note: >-
+  Author note here
+correspondence: >-
+  Correspondence note here
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+# Figure out output format
+is_docx <- knitr::pandoc_to("docx") | knitr::pandoc_to("odt")
+is_latex <- knitr::pandoc_to("latex")
+is_html <- knitr::pandoc_to("html")
+
+# Word-specific things
+table_format <- ifelse(is_docx, "huxtable", "kableExtra")  # Huxtable tables
+conditional_dpi <- ifelse(is_docx, 300, 300)  # Higher DPI
+conditional_align <- ifelse(is_docx, "default", "center")  # Word doesn't support align
+
+# Knitr options
+knitr::opts_chunk$set(
+  echo = FALSE, warning = FALSE, message = FALSE,
+  tidy.opts = list(width.cutoff = 120),  # Code width
+  fig.retina = 3, dpi = conditional_dpi,
+  fig.width = 7, fig.asp = 0.618,
+  fig.align = conditional_align, out.width = "100%",
+  fig.path = "output/figures/",
+  cache.path = "output/_cache/",
+  fig.process = function(x) {  # Remove "-1" from figure names
+    x2 = sub('-\\d+([.][a-z]+)$', '\\1', x)
+    if (file.rename(x, x2)) x2 else x
+  }
+)
+
+# R options
+options(
+  width = 90,  # Output width
+  dplyr.summarise.inform = FALSE,  # Turn off dplyr's summarize() auto messages
+  knitr.kable.NA = "",  # Make NAs blank in kables
+  kableExtra.latex.load_packages = FALSE,  # Don't add LaTeX preamble stuff
+  modelsummary_default = table_format  # Set modelsummary backend
+)
+```
+
+```{r libraries-data, include=FALSE}
+
+```
+
+
+# Marginal Structural MOdels in a Bayesian Framework
+
+$$
+\begin{aligned}
+y_i &\sim \mathcal{N}(\mu, \sigma)^{\tilde{w}_i} \\
+\mu &= \alpha + X_n \beta_k + \sigma \\
+\text{where} \\
+\alpha &\sim \operatorname{Student\ T}(\nu_\alpha, \mu_y, \sigma_y) \\
+\beta_k &\sim \operatorname{Multivariate} \mathcal{N}(0, \Sigma_\beta) \\
+\sigma &\sim \operatorname{Student\ T}_{+}(3, 0, \sigma_y)
+\end{aligned}
+$$
