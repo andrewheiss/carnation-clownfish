@@ -1,5 +1,6 @@
 ---
 output: github_document
+bibliography: manuscript/bibliography.bib
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -15,14 +16,14 @@ knitr::opts_chunk$set(
 library(emoji)
 ```
 
-# TITLE GOES HERE
+# Taking Uncertainty Seriously: Bayesian Marginal Structural Models for Causal Inference in Political Science
 
 <!-- badges: start -->
 <!-- badges: end -->
 
 ### Abstract
 
-> While the past two decades have been characterized by considerable progress in developing approaches to causal inference in situations where true experimental manipulation is either impractical or impossible, as is the case in much of political science, commonly employed approaches have developed largely within the frameworks of classical econometrics and frequentist non- parametric (Blackwell and Glynn 2018). Unfortunately, these frameworks are limited in their ability to answer many of the questions scholars of international relations and comparative politics are often interested in since they rely heavily upon the assumption of long-run replication rather than quantifying uncertainty directly (Gill 1999; Gill and Heuberger 2020; Schrodt 2014; Western and Jackman 1994). In this article we develop a Bayesian approach to the estimation of marginal structural models for causal inference with cross-sectional time series and panel data. We assess the proposed models' performance relative to existing procedures in a simulation study and two empirical examples, demonstrating that our approach performs well in terms of recovering the true parameter values while also lending itself to a more direct and intuitive interpretation. To ensure accessibility, we provide a flexible implementation of the proposed model in the R package brms (Bürkner 2017, 2018).
+> While the past two decades have been characterized by considerable progress in developing approaches to causal inference in situations where true experimental manipulation is either impractical or impossible, as is the case in much of political science, commonly employed approaches have developed largely within the frameworks of classical econometrics and frequentist non-parametric [@BlackwellGlynn:2018]. Unfortunately, these frameworks are limited in their ability to answer many of the questions scholars of international relations and comparative politics are often interested in since they rely heavily upon the assumption of long-run replication rather than quantifying uncertainty directly [@Gill:1999; @GillHeuberger:2020; @Schrodt:2014; @WesternJackman:1994]. In this article we develop a Bayesian approach to the estimation of marginal structural models for causal inference with cross-sectional time series and panel data. We assess the proposed models' performance relative to existing procedures in a simulation study and two empirical examples, demonstrating that our approach performs well in terms of recovering the true parameter values while also lending itself to a more direct and intuitive interpretation. To ensure accessibility, we provide a flexible implementation of the proposed model in the R package `brms` [@Burkner:2017; @Burkner:2018].
 
 ### `r emoji_glue(":cherry_blossom::clown::fish:")`: Note on "carnation clownfish" project name
 
@@ -48,3 +49,7 @@ codename(seed = 51684068, type = "ubuntu")
 ## Contributions and Code of Conduct
 
 We welcome contributions from everyone. Before you get started, please see our [contributor guidelines](CONTRIBUTING.md). Please note that this project is released with a [Contributor Code of Conduct](https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html). By contributing to this project, you agree to abide by its terms.
+
+---
+
+## References
